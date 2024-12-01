@@ -6,9 +6,16 @@ dotenv.config();
 
 const connectDB = require("./config/dbconfig")
 const app = express();
-app.use(cors())
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
+
+// Enable CORS
+app.use(cors({
+  origin: ['https://www.ayancurtains.com' , 'http://localhost:3000'],  // Remove the trailing slash
+  credentials: true,  // Allow cookies and other credentials
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Include OPTIONS method
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow necessary headers
+}));
 
 
 // Database Connection
